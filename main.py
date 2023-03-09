@@ -8,7 +8,7 @@
 
 def bmi_value_calculation(x, y):
     bmi_value = (y * 0.45) / ((x * 0.025) ** 2)
-    return bmi_value
+    return round(bmi_value, 2)
 
 def bmi_category_calculation(x):
     if x < 18.5:
