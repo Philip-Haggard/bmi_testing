@@ -1,19 +1,6 @@
 import pytest
 from main import BMI
 
-def gen_inputs():
-    inputs = ["5 9", "160"]
-
-    for item in inputs:
-        yield item
-
-GEN = gen_inputs()
-
-def test_value_calculation(monkeypatch):
-    monkeypatch.setattr('builtins.input', lambda _: next(GEN))
-    bmi = BMI()
-    assert bmi.bmi_value_calculation() == "Your BMI is 24.2 and you are Normal weight."
-
 ##############################
 # CATEGORY CALCULATION TESTS #
 ##############################
@@ -58,6 +45,60 @@ def test_obese_middle_category():
 # BMI VALUE CALCULATION TESTS #
 ###############################
 
+def underweight_inputs():
+    inputs = ["6 0", "125"]
+
+    for item in inputs:
+        yield item
+
+UNDERWEIGHT = underweight_inputs()
+
+def normal_weight_inputs():
+    inputs = ["5 3", "125"]
+
+    for item in inputs:
+        yield item
+
+NORMALWEIGHT = normal_weight_inputs()
+
+def overweight_inputs():
+    inputs = ["5 9", "185"]
+
+    for item in inputs:
+        yield item
+
+OVERWEIGHT = overweight_inputs()
+
+def obese_inputs():
+    inputs = ["5 5", "220"]
+
+    for item in inputs:
+        yield item
+
+OBESE = obese_inputs()
+
+def test_underweight_bmi(monkeypatch):
+    monkeypatch.setattr('builtins.input', lambda _: next(UNDERWEIGHT))
+    bmi = BMI()
+    assert bmi.bmi_value_calculation() == "Your BMI is 17.4 and you are Underweight."
+
+def test_normal_weight_bmi(monkeypatch):
+    monkeypatch.setattr('builtins.input', lambda _: next(NORMALWEIGHT))
+    bmi = BMI()
+    assert bmi.bmi_value_calculation() == "Your BMI is 22.7 and you are Normal weight."
+
+def test_overweight_bmi(monkeypatch):
+    monkeypatch.setattr('builtins.input', lambda _: next(OVERWEIGHT))
+    bmi = BMI()
+    assert bmi.bmi_value_calculation() == "Your BMI is 28.0 and you are Overweight."
+
+def test_obese_bmi(monkeypatch):
+    monkeypatch.setattr('builtins.input', lambda _: next(OBESE))
+    bmi = BMI()
+    assert bmi.bmi_value_calculation() == "Your BMI is 37.5 and you are Obese."
+
+####################################################################################
+
 def test_negative_weight(monkeypatch):
     monkeypatch.setattr('builtins.input', lambda prompt: '5 9\n' if 'height' in prompt else '-1\n')
     bmi = BMI()
@@ -99,10 +140,3 @@ def test_too_positive_height_inches(monkeypatch):
     with pytest.raises(ValueError) as exc_info:
         bmi.bmi_value_calculation()
     assert str(exc_info.value) == "Height in inches must be less than 12!"
-
-
-
-
-
-
-
