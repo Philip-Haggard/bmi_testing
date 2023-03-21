@@ -6,36 +6,43 @@
 #
 ##################################################
 
-def bmi_value_calculation(x, y):
-    bmi_value = (y * 0.45) / ((x * 0.025) ** 2)
-    return round(bmi_value, 2)
+class BMI:
 
-def bmi_category_calculation(x):
-    if x < 18.5:
-        category = "Underweight"
-    elif x >= 18.5 and x < 25:
-        category = "Normal weight"
-    elif x >= 25 and x < 30:
-        category = "Overweight"
-    else:
-        category = "Obese"
+    def bmi_category_calculation(self, x):
+            if x < 18.5:
+                return "Underweight"
+            elif x >= 18.5 and x < 25:
+                return "Normal weight"
+            elif x >= 25 and x < 30:
+                return "Overweight"
+            else:
+                return "Obese"
+        
+    def bmi_value_calculation(self):
+        height = input("Please enter your height in feet and inches (example: 5 9 or 6 2): ")
+        height_ft, height_in, *_ = map(int, height.split())
+        weight = float(input("Please enter your weight in pounds: "))
 
-    return category
+        if height_ft < 0 or height_in < 0:
+            raise ValueError("Height must be positive!")
+        elif height_ft == 0:
+             raise ValueError("Height must be greater than zero!")
+        elif height_in > 11:
+             raise ValueError("Height in inches must be less than 12!")
+        elif weight < 0:
+             raise ValueError("Weight must be greater than zero!")
+        elif weight == 0:
+             raise ValueError("Weight must be greater than zero!")
 
+        bmi_value = (weight * 0.45) / ((((height_ft*12) + height_in) * 0.025) ** 2)
+        category = self.bmi_category_calculation(bmi_value)
+        output = "Your BMI is " + str(round(bmi_value)) + " and you are " + category + "."
+        
+        return output
 
-# prompting the user for their height
-print("Please enter your height in inches: ")
-height = int(input())
+def main():
+     bmi = BMI()
+     print(bmi.bmi_value_calculation())
 
-# prompting the user for their weight
-print("Please enter your weight in pounds: ")
-weight = int(input())
-
-# calculating BMI value
-bmi_value = bmi_value_calculation(height, weight)
-
-# calculating BMI category
-bmi_category = bmi_category_calculation(bmi_value)
-
-print("Your BMI value is " + str(bmi_value))
-print ("Your BMI category is " + str(bmi_category))
+if __name__ == "__main__":
+     main()
