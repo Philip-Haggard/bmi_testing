@@ -36,7 +36,7 @@ class BMI:
 
         bmi_value = (weight * 0.45) / ((((height_ft*12) + height_in) * 0.025) ** 2)
         category = self.bmi_category_calculation(bmi_value)
-        output = "Your BMI is " + str(round(bmi_value)) + " and you are " + category + "."
+        output = "Your BMI is " + str(round(bmi_value, 1)) + " and you are " + category + "."
         
         return output
 
