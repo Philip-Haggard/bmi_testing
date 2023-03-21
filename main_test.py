@@ -29,3 +29,52 @@ def test_overweight_category():
 def test_obese_category():
     bmi = BMI()
     assert bmi.bmi_category_calculation(35) == "Obese"
+
+def test_negative_weight(monkeypatch):
+    monkeypatch.setattr('builtins.input', lambda prompt: '5 9\n' if 'height' in prompt else '-1\n')
+    bmi = BMI()
+    with pytest.raises(ValueError) as exc_info:
+        bmi.bmi_value_calculation()
+    assert str(exc_info.value) == "Weight must be greater than zero!"
+
+def test_zero_weight(monkeypatch):
+    monkeypatch.setattr('builtins.input', lambda prompt: '5 9\n' if 'height' in prompt else '0\n')
+    bmi = BMI()
+    with pytest.raises(ValueError) as exc_info:
+        bmi.bmi_value_calculation()
+    assert str(exc_info.value) == "Weight must be greater than zero!"
+
+def test_negative_height_feet(monkeypatch):
+    monkeypatch.setattr('builtins.input', lambda prompt: '-5 9\n' if 'height' in prompt else '150\n')
+    bmi = BMI()
+    with pytest.raises(ValueError) as exc_info:
+        bmi.bmi_value_calculation()
+    assert str(exc_info.value) == "Height must be positive!"
+
+def test_negative_height_inches(monkeypatch):
+    monkeypatch.setattr('builtins.input', lambda prompt: '5 -9\n' if 'height' in prompt else '150\n')
+    bmi = BMI()
+    with pytest.raises(ValueError) as exc_info:
+        bmi.bmi_value_calculation()
+    assert str(exc_info.value) == "Height must be positive!"
+
+def test_zero_height_feet(monkeypatch):
+    monkeypatch.setattr('builtins.input', lambda prompt: '0 0\n' if 'height' in prompt else '150\n')
+    bmi = BMI()
+    with pytest.raises(ValueError) as exc_info:
+        bmi.bmi_value_calculation()
+    assert str(exc_info.value) == "Height must be greater than zero!"
+
+def test_too_positive_height_inches(monkeypatch):
+    monkeypatch.setattr('builtins.input', lambda prompt: '5 12\n' if 'height' in prompt else '150\n')
+    bmi = BMI()
+    with pytest.raises(ValueError) as exc_info:
+        bmi.bmi_value_calculation()
+    assert str(exc_info.value) == "Height in inches must be less than 12!"
+
+
+
+
+
+
+

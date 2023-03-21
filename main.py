@@ -25,7 +25,7 @@ class BMI:
 
         if height_ft < 0 or height_in < 0:
             raise ValueError("Height must be positive!")
-        elif height_ft == 0:
+        elif height_ft == 0 and height_in == 0:
              raise ValueError("Height must be greater than zero!")
         elif height_in > 11:
              raise ValueError("Height in inches must be less than 12!")
