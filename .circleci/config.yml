@@ -19,12 +19,19 @@ jobs:
             pip install --upgrade pip
             pip install pytest
             pip install flask
+            pip install pylint
 
       - run:
           name: Run tests
           command: |
             source venv/bin/activate
             pytest
+
+      - run:
+          name: Perform static analysis
+          command: |
+            source venv/bin/activate
+            pylint app.py
 
 workflows:
   version: 2
