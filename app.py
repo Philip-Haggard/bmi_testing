@@ -3,7 +3,7 @@ from flask import Flask, request, render_template
 app = Flask(__name__)
 
 def calculate_bmi_value(weight, height):
-    bmi = round(((weight / (height * height)) * 703), 1)
+    bmi = round((weight * 0.45) / ((height * 0.025)*(height * 0.025)), 1)
     return bmi
 
 def calculate_bmi_category(bmi):
