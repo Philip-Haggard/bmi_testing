@@ -1,14 +1,11 @@
-"""Importing Flask"""
 from flask import Flask, request, render_template
 
 app = Flask(__name__)
 
-"""This function calculates the bmi value given the weight and height of the person in pounds"""
 def calculate_bmi_value(weight, height):
     bmi = round((weight * 0.45) / ((height * 0.025)*(height * 0.025)), 1)
     return bmi
 
-"""This function calculates the bmi category given the bmi value"""
 def calculate_bmi_category(bmi):
     if bmi < 18.5:
         category = 'Underweight'
@@ -20,7 +17,6 @@ def calculate_bmi_category(bmi):
         category = 'Obese'
     return category
 
-"""Flask implementation"""
 @app.route('/', methods=['GET', 'POST'])
 def index():
     bmi = None

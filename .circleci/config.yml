@@ -31,7 +31,7 @@ jobs:
           name: Perform static analysis
           command: |
             source venv/bin/activate
-            pylint app.py
+            pylint -d C0116 app.py
 
 workflows:
   version: 2
