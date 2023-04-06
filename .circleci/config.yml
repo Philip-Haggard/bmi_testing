@@ -20,7 +20,11 @@ jobs:
 
       - run:
           name: Run tests
-          command: pytest
+          command: |
+            python -m venv venv
+            python -m venv pytest
+            source venv/bin/activate
+            pytest
 
 workflows:
   version: 2
