@@ -14,9 +14,9 @@ jobs:
           name: Install dependencies
           command: |
             python -m venv venv
+            python -m pytest
             source venv/bin/activate
             pip freeze requirements.txt
-            pip install pytest
 
       - run:
           name: Run tests
