@@ -1,5 +1,5 @@
 import pytest
-from main import BMI
+from app import BMI
 
 ##############################
 # CATEGORY CALCULATION TESTS #
