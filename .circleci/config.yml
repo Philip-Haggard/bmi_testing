@@ -19,9 +19,7 @@ jobs:
 
       - run:
           name: Run tests
-          command: |
-            source venv/bin/activate
-            python -m pytest tests/
+          command: pytest
 
 workflows:
   version: 2
