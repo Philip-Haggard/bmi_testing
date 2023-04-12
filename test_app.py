@@ -1,11 +1,6 @@
 import pytest
 from app import calculate_bmi_value
 from app import calculate_bmi_category
-import coverage
-
-# Start coverage
-cov = coverage.Coverage()
-cov.start()
 
 # Category Calculation Tests
 
@@ -49,8 +44,3 @@ def test_overweight_bmi_value_calculation():
 
 def test_obese_bmi_value_calculation():
     assert calculate_bmi_value(220, 65) == (37.5)
-
-# Stop coverage and generate the report
-cov.stop()
-cov.save()
-cov.html_report()
