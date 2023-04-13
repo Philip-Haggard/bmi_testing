@@ -39,6 +39,7 @@ jobs:
           name: Run acceptance tests
           command: |
             source venv/bin/activate
+            sudo apt-get update && sudo apt-get install -y systemd
             sudo systemctl start dbus
             google-chrome-stable --headless --disable-gpu --remote-debugging-port=5000 http://localhost &
             cd tests
