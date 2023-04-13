@@ -23,19 +23,13 @@ jobs:
             pip install coverage
             pip install robotframework
             pip install robotframework-seleniumlibrary
+            pip install selenium
 
       - run:
-          name: Install Google Chrome
+          name: Install Firefox
           command: |
             source venv/bin/activate
-            wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
-            echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" | sudo tee /etc/apt/sources.list.d/google-chrome.list
-            sudo apt-get update
-            sudo apt-get install -y google-chrome-stable
-            Xvfb :99 -screen 0 1024x768x24 &
-            export DISPLAY=:99
-            sudo rm -rf /usr/local/share/.config/google-chrome/
-            google-chrome-stable --no-sandbox --disable-gpu --remote-debugging-port=9222 &
+            sudo apt-get install -y firefox
 
       - run:
           name: Run python program
@@ -47,6 +41,8 @@ jobs:
           name: Run acceptance tests
           command: |
             source venv/bin/activate
+            Xvfb :99 -screen 0 1024x768x24 &
+            export DISPLAY=:99
             cd tests
             robot --outputdir results/ test.robot
 
