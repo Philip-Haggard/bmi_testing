@@ -3,7 +3,7 @@ Library  SeleniumLibrary
 
 *** Variables ***
 ${BROWSER}  firefox
-${URL}      http://localhost:5000/
+${URL}      http://127.0.0.1
 
 *** Test Cases ***
 Example Test
