@@ -21,23 +21,19 @@ jobs:
             pip install flask
             pip install pylint
             pip install coverage
-
       - run:
           name: Run tests
           command: |
             source venv/bin/activate
             pytest --cov
             coverage report -m
-
       - run:
           name: Perform static analysis
           command: |
             source venv/bin/activate
             pylint -d C0116,C0114 app.py
-
 workflows:
   version: 2
   build_and_deploy:
     jobs:
       - build
-
