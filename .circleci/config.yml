@@ -38,6 +38,7 @@ jobs:
       - run:
           name: Run acceptance tests
           command: |
+            source venv/bin/activate
             cd tests
             robot --outputdir results/ test.robot
 
