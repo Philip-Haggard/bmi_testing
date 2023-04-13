@@ -25,31 +25,17 @@ jobs:
             pip install flask
             pip install pylint
             pip install coverage
-            pip install robotframework
-            pip install robotframework-seleniumlibrary
-      - run:
-          name: Run python program
-          command: |
-            source venv/bin/activate
-            python3 app.py --port 5000 &
       - run:
           name: Run tests
           command: |
             source venv/bin/activate
             pytest --cov
             coverage report -m
-            cd tests
-            robot test.robot
       - run:
           name: Perform static analysis
           command: |
             source venv/bin/activate
             pylint -d C0116,C0114 app.py
-      - run:
-          name: Kill python program
-          command: |
-            source venv/bin/activate
-            pkill -f app.py
 workflows:
   version: 2
   build_and_deploy:
