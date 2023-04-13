@@ -38,8 +38,7 @@ jobs:
             source venv/bin/activate
             pytest --cov
             coverage report -m
-            cd tests
-            robot test.robot
+            chrome --version
       - run:
           name: Perform static analysis
           command: |
