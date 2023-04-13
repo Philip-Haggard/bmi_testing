@@ -25,6 +25,18 @@ jobs:
             pip install robotframework-seleniumlibrary
 
       - run:
+          name: Install Chrome and ChromeDriver
+          command: |
+            curl -sS -o - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add
+            echo "deb https://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list
+            apt-get update
+            apt-get install -y google-chrome-stable
+            LATEST_CHROMEDRIVER_VERSION=$(curl -sS chromedriver.storage.googleapis.com/LATEST_RELEASE)
+            curl -sS -o /tmp/chromedriver_linux64.zip http://chromedriver.storage.googleapis.com/$LATEST_CHROMEDRIVER_VERSION/chromedriver_linux64.zip
+            unzip /tmp/chromedriver_linux64.zip chromedriver -d /usr/local/bin/
+
+
+      - run:
           name: Run python program
           command: |
             source venv/bin/activate
