@@ -29,6 +29,7 @@ jobs:
           name: Install Firefox
           command: |
             source venv/bin/activate
+            sudo apt-get update
             sudo apt install snapd
             sudo snap install firefox --classic
 
