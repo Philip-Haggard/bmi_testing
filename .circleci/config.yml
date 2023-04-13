@@ -21,6 +21,8 @@ jobs:
             pip install flask
             pip install pylint
             pip install coverage
+            pip install robotframework
+            pip install robotframework-seleniumlibrary
       - run:
           name: Run tests
           command: |
