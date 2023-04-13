@@ -39,6 +39,7 @@ jobs:
           name: Run acceptance tests
           command: |
             source venv/bin/activate
+            google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
             cd tests
             robot --outputdir results/ test.robot
 
