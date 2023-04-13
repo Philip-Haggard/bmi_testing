@@ -23,10 +23,6 @@ jobs:
             pip install coverage
             pip install robotframework
             pip install robotframework-seleniumlibrary
-
-      - run:
-          name: Install Chrome and ChromeDriver
-          command: |
             curl -fsSL https://dl-ssl.google.com/linux/linux_signing_key.pub -o /tmp/linux_signing_key.pub
             sudo apt-key add /tmp/linux_signing_key.pub
             echo "deb https://dl.google.com/linux/chrome/deb/ stable main" | sudo tee /etc/apt/sources.list.d/google-chrome.list
