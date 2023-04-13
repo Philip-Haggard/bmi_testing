@@ -28,7 +28,7 @@ jobs:
           name: Run python program
           command: |
             source venv/bin/activate
-            python3 app.py
+            python3 app.py &
 
       - run:
           name: Run acceptance tests
