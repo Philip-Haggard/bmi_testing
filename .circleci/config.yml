@@ -38,7 +38,7 @@ jobs:
             source venv/bin/activate
             pytest --cov
             coverage report -m
-            chrome --version
+            google-chrome --version
       - run:
           name: Perform static analysis
           command: |
