@@ -1,72 +1,32 @@
 version: 2.1
-
 jobs:
   build:
     docker:
-      - image: cimg/python:3.8-browsers
-
-    working_directory: ~/repo
-
+      - image: circleci/python:3.9.5-buster
     steps:
       - checkout
-
-      - run:
-          name: Update package lists
-          command: sudo apt-get update
-
-      - run:
-          name: Install dependencies
-          command: |
-            python --version
-            python -m venv venv
-            source venv/bin/activate
-            pip install --upgrade pip
-            pip install pytest-cov
-            pip install flask
-            pip install pylint
-            pip install coverage
-            pip install robotframework
-            pip install robotframework-seleniumlibrary
-            pip install selenium
-
+      - run: pip install -r requirements.txt
+      - run: sudo apt-get update && sudo apt-get install -y chromium-browser
+      - run: wget https://github.com/mozilla/geckodriver/releases/download/v0.30.0/geckodriver-v0.30.0-linux64.tar.gz && tar -xvf geckodriver-v0.30.0-linux64.tar.gz && chmod +x geckodriver && sudo mv geckodriver /usr/local/bin/
       - run:
           name: Run python program
-          command: |
-            source venv/bin/activate
-            python3 app.py &
-
+          command: python3 app.py &
       - run:
-          name: Run acceptance tests
+          name: Run robot tests
           command: |
-            source venv/bin/activate
-            sudo apt-get update && sudo apt-get install -y systemd
-            sudo systemctl start dbus
-            google-chrome-stable --headless --disable-gpu --remote-debugging-port=5000 http://localhost &
             cd tests
             robot --outputdir results/ test.robot
-
       - run:
           name: Run tests
           command: |
-            source venv/bin/activate
             pytest --cov
             coverage report -m
-
       - run:
           name: Perform static analysis
           command: |
             source venv/bin/activate
             pylint -d C0116,C0114 app.py
-
       - run:
           name: Kill python program
           command: |
-            source venv/bin/activate
             pkill -f app.py
-
-workflows:
-  version: 2
-  build_and_deploy:
-    jobs:
-      - build
-
