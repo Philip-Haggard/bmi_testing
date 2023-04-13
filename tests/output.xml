@@ -1,77 +1,78 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 6.0.2 (Python 3.10.6 on linux)" generated="20230413 14:21:03.522" rpa="false" schemaversion="3">
+<robot generator="Robot 6.0.2 (Python 3.10.6 on linux)" generated="20230413 14:51:42.732" rpa="false" schemaversion="3">
 <suite id="s1" name="Test" source="/home/phaggard/testing_and_QA/bmi_testing/tests/test.robot">
 <test id="s1-t1" name="Example Test" line="9">
 <kw name="Open Browser" library="SeleniumLibrary">
 <arg>${URL}</arg>
 <arg>${BROWSER}</arg>
 <doc>Opens a new browser instance to the optional ``url``.</doc>
-<msg timestamp="20230413 14:21:03.767" level="INFO">Opening browser 'chrome' to base url 'http://localhost:5000/'.</msg>
-<status status="PASS" starttime="20230413 14:21:03.767" endtime="20230413 14:21:05.039"/>
+<msg timestamp="20230413 14:51:42.859" level="INFO">Opening browser 'firefox' to base url 'http://localhost:5000'.</msg>
+<msg timestamp="20230413 14:51:42.860" level="INFO">Firefox driver log is always forced to to: /home/phaggard/testing_and_QA/bmi_testing/tests/geckodriver-1.log</msg>
+<status status="PASS" starttime="20230413 14:51:42.858" endtime="20230413 14:51:50.823"/>
 </kw>
 <kw name="Page Should Contain Textfield" library="SeleniumLibrary">
 <arg>weight</arg>
 <doc>Verifies text field ``locator`` is found from current page.</doc>
-<msg timestamp="20230413 14:21:05.075" level="INFO">Current page contains text field 'weight'.</msg>
-<status status="PASS" starttime="20230413 14:21:05.040" endtime="20230413 14:21:05.076"/>
+<msg timestamp="20230413 14:51:50.898" level="INFO">Current page contains text field 'weight'.</msg>
+<status status="PASS" starttime="20230413 14:51:50.824" endtime="20230413 14:51:50.898"/>
 </kw>
 <kw name="Click Element" library="SeleniumLibrary">
 <arg>weight</arg>
 <doc>Click the element identified by ``locator``.</doc>
-<msg timestamp="20230413 14:21:05.077" level="INFO">Clicking element 'weight'.</msg>
-<status status="PASS" starttime="20230413 14:21:05.077" endtime="20230413 14:21:05.149"/>
+<msg timestamp="20230413 14:51:50.898" level="INFO">Clicking element 'weight'.</msg>
+<status status="PASS" starttime="20230413 14:51:50.898" endtime="20230413 14:51:51.330"/>
 </kw>
 <kw name="Input Text" library="SeleniumLibrary">
 <arg>weight</arg>
 <arg>150</arg>
 <doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
-<msg timestamp="20230413 14:21:05.150" level="INFO">Typing text '150' into text field 'weight'.</msg>
-<status status="PASS" starttime="20230413 14:21:05.149" endtime="20230413 14:21:05.229"/>
+<msg timestamp="20230413 14:51:51.331" level="INFO">Typing text '150' into text field 'weight'.</msg>
+<status status="PASS" starttime="20230413 14:51:51.331" endtime="20230413 14:51:51.416"/>
 </kw>
 <kw name="Page Should Contain Textfield" library="SeleniumLibrary">
 <arg>height</arg>
 <doc>Verifies text field ``locator`` is found from current page.</doc>
-<msg timestamp="20230413 14:21:05.249" level="INFO">Current page contains text field 'height'.</msg>
-<status status="PASS" starttime="20230413 14:21:05.229" endtime="20230413 14:21:05.250"/>
+<msg timestamp="20230413 14:51:51.428" level="INFO">Current page contains text field 'height'.</msg>
+<status status="PASS" starttime="20230413 14:51:51.416" endtime="20230413 14:51:51.428"/>
 </kw>
 <kw name="Click Element" library="SeleniumLibrary">
 <arg>height</arg>
 <doc>Click the element identified by ``locator``.</doc>
-<msg timestamp="20230413 14:21:05.250" level="INFO">Clicking element 'height'.</msg>
-<status status="PASS" starttime="20230413 14:21:05.250" endtime="20230413 14:21:05.304"/>
+<msg timestamp="20230413 14:51:51.429" level="INFO">Clicking element 'height'.</msg>
+<status status="PASS" starttime="20230413 14:51:51.429" endtime="20230413 14:51:51.665"/>
 </kw>
 <kw name="Input Text" library="SeleniumLibrary">
 <arg>height</arg>
 <arg>60</arg>
 <doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
-<msg timestamp="20230413 14:21:05.306" level="INFO">Typing text '60' into text field 'height'.</msg>
-<status status="PASS" starttime="20230413 14:21:05.305" endtime="20230413 14:21:05.379"/>
+<msg timestamp="20230413 14:51:51.666" level="INFO">Typing text '60' into text field 'height'.</msg>
+<status status="PASS" starttime="20230413 14:51:51.666" endtime="20230413 14:51:51.772"/>
 </kw>
 <kw name="Page Should Contain Button" library="SeleniumLibrary">
 <arg>Calculate BMI</arg>
 <doc>Verifies button ``locator`` is found from current page.</doc>
-<msg timestamp="20230413 14:21:05.418" level="INFO">Current page contains button 'Calculate BMI'.</msg>
-<status status="PASS" starttime="20230413 14:21:05.379" endtime="20230413 14:21:05.419"/>
+<msg timestamp="20230413 14:51:51.841" level="INFO">Current page contains button 'Calculate BMI'.</msg>
+<status status="PASS" starttime="20230413 14:51:51.773" endtime="20230413 14:51:51.841"/>
 </kw>
 <kw name="Click Button" library="SeleniumLibrary">
 <arg>Calculate BMI</arg>
 <doc>Clicks the button identified by ``locator``.</doc>
-<msg timestamp="20230413 14:21:05.419" level="INFO">Clicking button 'Calculate BMI'.</msg>
-<status status="PASS" starttime="20230413 14:21:05.419" endtime="20230413 14:21:05.518"/>
+<msg timestamp="20230413 14:51:51.843" level="INFO">Clicking button 'Calculate BMI'.</msg>
+<status status="PASS" starttime="20230413 14:51:51.842" endtime="20230413 14:51:52.035"/>
 </kw>
 <kw name="Page Should Contain" library="SeleniumLibrary">
 <arg>Obese</arg>
 <doc>Verifies that current page contains ``text``.</doc>
-<msg timestamp="20230413 14:21:05.540" level="INFO">Current page contains text 'Obese'.</msg>
-<status status="PASS" starttime="20230413 14:21:05.519" endtime="20230413 14:21:05.540"/>
+<msg timestamp="20230413 14:51:52.087" level="INFO">Current page contains text 'Obese'.</msg>
+<status status="PASS" starttime="20230413 14:51:52.035" endtime="20230413 14:51:52.087"/>
 </kw>
 <kw name="Close Browser" library="SeleniumLibrary">
 <doc>Closes the current browser.</doc>
-<status status="PASS" starttime="20230413 14:21:05.540" endtime="20230413 14:21:05.598"/>
+<status status="PASS" starttime="20230413 14:51:52.091" endtime="20230413 14:51:52.869"/>
 </kw>
-<status status="PASS" starttime="20230413 14:21:03.766" endtime="20230413 14:21:05.598"/>
+<status status="PASS" starttime="20230413 14:51:42.857" endtime="20230413 14:51:52.871"/>
 </test>
-<status status="PASS" starttime="20230413 14:21:03.523" endtime="20230413 14:21:05.599"/>
+<status status="PASS" starttime="20230413 14:51:42.732" endtime="20230413 14:51:52.871"/>
 </suite>
 <statistics>
 <total>

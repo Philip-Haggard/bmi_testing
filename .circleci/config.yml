@@ -31,7 +31,7 @@ jobs:
           name: Run python program
           command: |
             source venv/bin/activate
-            python3 app.py &
+            python3 app.py --port 5000 &
       - run:
           name: Run tests
           command: |
