@@ -2,7 +2,7 @@
 Library  SeleniumLibrary
 
 *** Variables ***
-${BROWSER}  firefox
+${BROWSER}  chrome
 ${URL}      http://localhost:5000/
 
 *** Test Cases ***

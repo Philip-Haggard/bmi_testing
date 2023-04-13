@@ -1,7 +1,4 @@
 from flask import Flask, request, render_template
-from selenium import webdriver
-
-driver = webdriver.Firefox()
 
 app = Flask(__name__)
 

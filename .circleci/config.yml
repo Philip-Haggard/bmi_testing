@@ -11,8 +11,14 @@ jobs:
       - checkout
 
       - run:
+          name: Update package lists
+          command: sudo apt-get update
+
+      - run:
           name: Install dependencies
           command: |
+            sudo apt-get install -y libxss1 libappindicator1 libindicator7
+            sudo apt-get install -y fonts-liberation
             python --version
             python -m venv venv
             source venv/bin/activate
@@ -26,12 +32,16 @@ jobs:
             pip install selenium
 
       - run:
-          name: Install Firefox
+          name: Install Google Chrome
           command: |
-            source venv/bin/activate
+            wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+            sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
             sudo apt-get update
-            sudo apt install snapd
-            sudo snap install firefox --classic
+            sudo apt-get install -y google-chrome-stable
+
+      - run:
+          name: Start Chrome driver
+          command: google-chrome-stable --disable-dev-shm-usage --remote-debugging-port=9222 http://localhost &
 
       - run:
           name: Run python program
@@ -42,9 +52,6 @@ jobs:
       - run:
           name: Run acceptance tests
           command: |
-            source venv/bin/activate
-            Xvfb :99 -screen 0 1024x768x24 &
-            export DISPLAY=:99
             cd tests
             robot --outputdir results/ test.robot
 
