@@ -1,40 +1,27 @@
 version: 2.1
+
+orbs:
+  python: circleci/python@1.0.6
+
 jobs:
   build:
-    docker:
-      - image: circleci/python:3.9.5-buster
+    executor: python/default
     steps:
       - checkout
-      - run: pip install -r requirements.txt
+      - python/install-deps
       - run:
-          name: Install Chrome
+          name: Install Chrome and dependencies
           command: |
+            wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+            echo 'deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main' | sudo tee /etc/apt/sources.list.d/google-chrome.list
             sudo apt-get update
-            sudo apt-get install software-properties-common
-            sudo add-apt-repository universe
-            sudo apt-get update
-            sudo apt-get install chromium-browser
-
-      - run: wget https://github.com/mozilla/geckodriver/releases/download/v0.30.0/geckodriver-v0.30.0-linux64.tar.gz && tar -xvf geckodriver-v0.30.0-linux64.tar.gz && chmod +x geckodriver && sudo mv geckodriver /usr/local/bin/
+            sudo apt-get install -y google-chrome-stable xvfb
       - run:
-          name: Run python program
-          command: python3 app.py &
-      - run:
-          name: Run robot tests
+          name: Install Robot Framework and Flask
           command: |
-            cd tests
-            robot --outputdir results/ test.robot
+            pip install robotframework robotframework-seleniumlibrary Flask
       - run:
-          name: Run tests
+          name: Run Robot Framework tests
           command: |
-            pytest --cov
-            coverage report -m
-      - run:
-          name: Perform static analysis
-          command: |
-            source venv/bin/activate
-            pylint -d C0116,C0114 app.py
-      - run:
-          name: Kill python program
-          command: |
-            pkill -f app.py
+            xvfb-run -a robot tests/
+    working_directory: ~/project
