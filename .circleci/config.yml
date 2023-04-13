@@ -23,14 +23,23 @@ jobs:
             pip install coverage
             pip install robotframework
             pip install robotframework-seleniumlibrary
-            curl -fsSL https://dl-ssl.google.com/linux/linux_signing_key.pub -o /tmp/linux_signing_key.pub
-            sudo apt-key add /tmp/linux_signing_key.pub
-            echo "deb https://dl.google.com/linux/chrome/deb/ stable main" | sudo tee /etc/apt/sources.list.d/google-chrome.list
+
+      - run:
+          name: Install Google Chrome
+          command: |
+            source venv/bin/activate
+            wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+            echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" | sudo tee /etc/apt/sources.list.d/google-chrome.list
             sudo apt-get update
             sudo apt-get install -y google-chrome-stable
-            LATEST_CHROMEDRIVER_VERSION=$(curl -sS chromedriver.storage.googleapis.com/LATEST_RELEASE)
-            sudo curl -sS -o /tmp/chromedriver_linux64.zip http://chromedriver.storage.googleapis.com/$LATEST_CHROMEDRIVER_VERSION/chromedriver_linux64.zip
-            sudo unzip /tmp/chromedriver_linux64.zip chromedriver -d /usr/local/bin/
+      - run:
+          name: Start Xvfb and Google Chrome
+          command: |
+            source/venv/bin/activate
+            Xvfb :99 -screen 0 1024x768x24 &
+            export DISPLAY=:99
+            google-chrome-stable --no-sandbox --disable-gpu --remote-debugging-port=9222 &
+
 
       - run:
           name: Run python program

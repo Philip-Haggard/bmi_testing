@@ -7,7 +7,7 @@ ${URL}      http://localhost:5000/
 
 *** Test Cases ***
 Example Test
-    Open Browser  ${URL}  ${BROWSER} options=add_argument("--headless")
+    Open Browser  ${URL}  ${BROWSER}
     Page Should Contain Textfield    weight
     Click Element    weight
     Input Text    weight    150
