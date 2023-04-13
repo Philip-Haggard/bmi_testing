@@ -21,6 +21,21 @@ jobs:
             pip install flask
             pip install pylint
             pip install coverage
+            pip install robotframework
+            pip install robotframework-seleniumlibrary
+
+      - run:
+          name: Run python program
+          command: |
+            source venv/bin/activate
+            python3 app.py
+
+      - run:
+          name: Run acceptance tests
+          command: |
+            source venv/bin/activate
+            cd tests
+            robot --outputdir results/ test.robot
 
       - run:
           name: Run tests
@@ -34,6 +49,12 @@ jobs:
           command: |
             source venv/bin/activate
             pylint -d C0116,C0114 app.py
+
+      - run:
+          name: Kill python program
+          command: |
+            source venv/bin/activate
+            pkill -f app.py
 
 workflows:
   version: 2
